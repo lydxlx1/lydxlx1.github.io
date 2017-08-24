@@ -5,6 +5,6 @@
 - 3
 
 $$
-How about this.
+a^2 + b^2 = c^2
 $$
 
