@@ -8,7 +8,7 @@ category: personal
 tags: []
 image: 
 comments: true
-mathjax:
+mathjax: true
 ---
 
 Markdown: Syntax
