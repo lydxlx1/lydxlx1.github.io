@@ -42,9 +42,9 @@ jekyll-archives:
 
 # Owner/author information
 author:
-  name:           Your Name
+  name:           Yuan Li
   picture:        your-photo.jpg
-  email:          your@email.com
+  email:          lydxlx@gmail.com
   # Use the coder's toolbox at http://coderstoolbox.net/string/#!encoding=xml&action=encode&charset=us_ascii to encode your description into XML string
   description:    Some Details about yourself
   # Social networking links used in footer. Update and remove as you like.
