@@ -1,109 +1,60 @@
-title:            Welcome
-description:      Site description for the metas.
-logo:             omikron.png
-disqus_shortname: shortname
-# Assign a default image for your site's header and footer
-default_bg:       default_bg.jpg
-search:           true
-share:            true
-# Read Time is a calculator tp provide post read-time based on word count. Usage is recommended.
-readtime:         true
-# Turn on or off the fin animations in the header and footer
-triangleheader:	  true
-animated_fins:    true
-# Specify the fin color in RGB value
-fin_color:        "255,255,255"
-# Change url to your domain. Leave localhost server or blank when working locally.
-url:              http://localhost:4000
-# baseurl:           
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
 
-# Gems used
-gems:
-  - jekyll-feed
-  - jekyll-archives
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-seo-tag
+# Site settings
+title: bindog study
+brief-intro: Machine Learning & Security
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://bindog.github.io" # the base hostname & protocol for your site
 
-# Archives configuration
-# https://github.com/jekyll/jekyll-archives/blob/master/docs/configuration.md
-jekyll-archives:
-  enabled:
-    - categories
-    - tags
-  layout: 'archive'
-  permalinks:
-    # year: '/:year/'
-    # month: '/:year/:month/'
-    # day: '/:year/:month/:day/'
-    tag: '/archive/tag/:name/'
-    category: '/archive/category/:name/'
+permalink: blog/:year/:month/:day/:title/
 
-# Owner/author information
-author:
-  name:           Yuan Li
-  picture:        your-photo.jpg
-  email:          lydxlx@gmail.com
-  # Use the coder's toolbox at http://coderstoolbox.net/string/#!encoding=xml&action=encode&charset=us_ascii to encode your description into XML string
-  description:    Some Details about yourself
-  # Social networking links used in footer. Update and remove as you like.
-  twitter:
-  facebook:
-  github:
-  linkedin:
-  instagram:
-  tumblr:
-  # For Google Authorship https://plus.google.com/authorship
-  google_plus:    "http://plus.google.com/123123123123132123"
+# other links
+twitter_username: bindog
+facebook_username: bindog
+github_username:  bindog
+email: bindog@outlook.com
+weibo_username: wu
+zhihu_username: wu
+linkedIn_username: bindog
+dribbble_username:
 
-# Analytics and webmaster tools stuff goes here
-google_analytics:
-google_verify:
+description_footer: V2EX
 
-# Links to include in top navigation
-# For external links add external: true
-links:
-  - title: Home
-    url: /
-    external: false
-    icon: home
-  - title: Categories
-    url: /categories
-  - title: Tags
-    url: /tags
+# comments
+# two ways to comment, only choose one, and use your own short name
+# 两种评论插件，选一个就好了，使用自己的 short_name
+# duoshuo_shortname: 
+# disqus_shortname: 
 
-# Sitemap configuration
-# https://github.com/kinnetica/jekyll-plugins
-sitemap:
-    file: "/sitemap.xml"
-    exclude:
-        - "/atom.xml"
-        - "/feed.xml"
-        - "/feed/index.xml"
-    include_posts:
-        - "/index.html"
+# statistic analysis 统计代码
+# 百度统计 id，将统计代码替换为自己的百度统计id，即
+# hm.src = "//hm.baidu.com/hm.js?xxxxxxxxxxxx";
+# xxxxx字符串
+baidu_tongji_id: 080b55b6db602a74eb162ffca24da6e1
+# google_analytics_id: UA-72449510-4 # google 分析追踪id
 
-# http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-timezone:    America/New_York
-future:      true
-markdown:    kramdown
-mathjax:     true
-highlighter: rouge
-paginate:    6
-paginate_path: "/blog/:num/"
-
-# https://github.com/mojombo/jekyll/wiki/Permalinks
-collections:
-  posts:
-    output: true
-    permalink: /blog/:title
-  pages:
-    output: true
-    permalink: /:title
+# Build settings
+markdown: kramdown
 
 kramdown:
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
+  input: GFM
+  syntax_highlighter: rouge
+
+# port
+# port: 1234
+
+# url
+category_dir: category/
+tag_dir: tag/
+
+# excerpt
+excerpt_separator: "\n\n\n\n"
+
+# paginate
+gems: [jekyll-paginate]
+paginate: 6
