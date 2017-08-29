@@ -16,6 +16,7 @@ tags:
 # Header 2
 ## Subheader 1
 This is a formula
+
 $$
 a^2 + b^2 = c^2
 $$
