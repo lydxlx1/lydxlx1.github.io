@@ -5,8 +5,8 @@ layout: post
 title: "Hello World"
 description: ""
 mathjax: true
-categories:
-tags:
+categories: category
+tags: tag
 ---
 
 * content
@@ -21,6 +21,6 @@ $$
 a^2 + b^2 = c^2
 $$
 
-\[
+$$
 \sum_{i=1}^{n}{\frac{n(n-1)}{2}
-\]
+$$
