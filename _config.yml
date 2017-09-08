@@ -6,21 +6,21 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: bindog study
-brief-intro: Machine Learning & Security
+title: lydxlx
+brief-intro: # Machine Learning & Security
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://bindog.github.io" # the base hostname & protocol for your site
+url: "https://lydxlx1.github.io" # the base hostname & protocol for your site
 
 permalink: blog/:year/:month/:day/:title/
 
 # other links
-twitter_username: bindog
-facebook_username: bindog
-github_username:  bindog
-email: bindog@outlook.com
-weibo_username: wu
-zhihu_username: wu
-linkedIn_username: bindog
+twitter_username:
+facebook_username: lydxlx@gmail.com
+github_username: lydxlx1
+email: lydxlx@gmail.com
+weibo_username:
+zhihu_username:
+linkedIn_username: lixx2100@umn.edu
 dribbble_username:
 
 description_footer: V2EX
