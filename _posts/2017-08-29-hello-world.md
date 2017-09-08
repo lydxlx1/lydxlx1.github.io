@@ -5,6 +5,7 @@ layout: post
 title: "Hello World"
 description: ""
 mathjax: true
+tipue_search_active: true
 categories: category
 tags: tag
 ---
