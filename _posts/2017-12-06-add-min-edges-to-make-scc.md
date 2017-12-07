@@ -7,7 +7,7 @@ description: ""
 mathjax: true
 tipue_search_active: true
 categories: algorithm
-tags: graph, strongly-connected-component
+tags: graph strongly-connected-component
 ---
 
 ## Problem
