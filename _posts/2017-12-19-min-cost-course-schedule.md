@@ -35,6 +35,7 @@ tags: greedy dp reduction
 **证明：** 略。
 
 有了上述Lemma，我们定义DP的状态$f[i][j]$表示：给定课程0到$i$，在累计上课时间不超过$j$的情况下，我们最多可以获得学分数。状态转移如下：  
+
 $$
 f[i][j] = \left\{
 \begin{array}{cl}
@@ -45,4 +46,5 @@ f[i-1][j] & \mbox{else if } j < t_i \\
 \end{array}  
 \right.
 $$  
+
 正确性读者可以自行理解，其中最后一个转移式子用到了上述的Lemma，它保证了我们可以把这个课放在最后学习。最终答案是$f[n - 1][\min(\sum{t_i}, d_{n-1})]$。 时间复杂度是$O(\min(n^3, nd_i))$。
