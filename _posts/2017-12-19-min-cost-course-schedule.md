@@ -40,7 +40,7 @@ $$
 f[i][j] = \left\{
 \begin{array}{cl}
 0 & \mbox{if } i < 0 \mbox{ or } j \le 0 \\
-f[i][t_i] & \mbox{else if } j \ge d_i \\
+f[i][d_i] & \mbox{else if } j \ge d_i \\
 f[i-1][j] & \mbox{else if } j < t_i \\
 \max(f[i-1][j], f[i-1][j-t_i]) & \mbox{else}
 \end{array}  
