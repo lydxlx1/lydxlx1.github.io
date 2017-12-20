@@ -45,7 +45,7 @@ f[i-1][j] & \mbox{else if } j < t_i \\
 \max(f[i-1][j], f[i-1][j-t_i]) & \mbox{else}
 \end{array}  
 \right.
-$$  
+$$.
 
 正确性读者可以自行理解，其中最后一个转移式子用到了上述的Lemma，它保证了我们可以把这个课放在最后学习。最终答案是$f[n - 1][\min(\sum{t_i}, d_{n-1})]$。 时间复杂度是$O(\min(n^3, nd_i))$。
 
