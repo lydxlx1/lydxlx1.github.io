@@ -35,6 +35,10 @@ tags: greedy dp reduction
 **证明：** 略。
 
 有了上述Lemma，我们定义DP的状态$f[i][j]$表示：给定课程0到$i$，在累计上课时间不超过$j$的情况下，我们最多可以获得学分数。状态转移如下：
-\[
-f[i][j]
-\]
+$$
+f[i][j] = \left{
+\begin{array}{cl}
+0 & if i < 0 \\
+\end{array}  
+\right.
+$$
