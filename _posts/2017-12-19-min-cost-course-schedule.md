@@ -10,6 +10,9 @@ categories: algorithm
 tags: greedy dp reduction
 ---
 
+* content
+{:toc}
+
 ## Problem
 [LeetCode 630](https://leetcode.com/problems/course-schedule-iii/description/)的加强版，我把它称为**Min Cost Course Schedule**。  
 给定$n$个course，每个course有三个属性
