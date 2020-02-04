@@ -6,7 +6,7 @@ title: "Disable hardware acceleration in Chrome"
 description: ""
 mathjax: true
 tipue_search_active: true
-categories: english
+categories: tip
 tags: chrome wechat
 ---
 
