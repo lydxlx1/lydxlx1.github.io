@@ -21,8 +21,9 @@ tags: chrome wechat
 很长一段时间，我一直把锅丢给Chrome和mac的新操作系统...
 
 ## 解决方法
-也许是歪打正着，我今天的chrome特别卡，吃了所有的cpu，于是便在网上搜一搜有没有好的解决方法。之后发现了一个帖子说禁用 **Use hardware acceleration when available** 这个选项会有一定的效果。
-禁用了以后并没有显著改善chrome吃cpu的问题，但是发现微信以及Google Keep现在都可以瞬时切换了！建议遇到过类似问题的小伙伴也试试看，希望也可以解决你们的问题！
+也许是歪打正着，我今天在网上闲逛有看看没有好的方案可以解决chrome狂吃cpu的问题。之后发现了一个帖子说禁用 **Use hardware acceleration when available** 这个选项会有一定的效果。
+禁用了以后并没有发现明显的改善，但是微信以及Google Keep都可以瞬时切换了！非常神奇。。。
+建议遇到过类似问题的小伙伴也试试看，希望可以解决你们的问题！
 
 ## 一个小发现
 看来mac版本的微信内部是用Chrome来渲染的。
