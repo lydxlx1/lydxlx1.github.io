@@ -23,6 +23,7 @@ tags: chrome wechat
 ## 解决方法
 也许是歪打正着，我今天在网上闲逛有看看没有好的方案可以解决chrome狂吃cpu的问题。之后发现了一个帖子说禁用 **Use hardware acceleration when available** 这个选项会有一定的效果。
 禁用了以后并没有发现明显的改善，但是微信以及Google Keep都可以瞬时切换了！非常神奇。。。
+
 建议遇到过类似问题的小伙伴也试试看，希望可以解决你们的问题！
 
 ## 一个小发现
