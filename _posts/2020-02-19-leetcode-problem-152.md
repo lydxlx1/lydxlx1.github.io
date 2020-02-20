@@ -31,7 +31,7 @@ This solution is complicated but marks how I started to tackle this problem.
     appear at index `a` and `b`, where `0 <= a <= b < n`, then the largest product must be either `(nums[a + 1] * nums[a + 2] * ... * nums[n - 1])`
     or `(nums[0] * nums[1] * ... * nums[b - 1])`.
     For convenience, instead of doing exactly what the above algorithm suggests, it suffices to comptue all the
-    prefix and suffix products and take the max. (This also covers 3a.)
+    prefix and suffix products and take the max. (This also covers 3.1.)
 
 Time: $$O(n)$$
 
