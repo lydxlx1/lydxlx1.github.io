@@ -35,7 +35,7 @@ This solution is complicated but marks how I started to tackle this problem.
 
 Time: $$O(n)$$
 
-Space: O(n)
+Space: $$O(n)$$
 
 
 ```python
