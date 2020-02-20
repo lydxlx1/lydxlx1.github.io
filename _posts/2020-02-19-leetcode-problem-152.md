@@ -2,7 +2,7 @@
 author: lydxlx
 date: 2020-02-19
 layout: post
-title: "LeetCode Problem 152"
+title: "LeetCode Problem 152 - Maximum Product Subarray"
 description: ""
 mathjax: true
 tipue_search_active: true
@@ -12,6 +12,9 @@ tags: leetcode
 
 * content
 {:toc}
+
+## LeetCode Problem 152 - Maximum Product Subarray
+[[Problem](https://leetcode.com/problems/maximum-product-subarray/)][[Github Code](https://github.com/lydxlx1/LeetCode/blob/master/src/_152.py)]
 
 ## First attempt
 This solution is complicated but marks how I started to tackle this problem.
@@ -35,7 +38,7 @@ Time: $$O(n)$$
 Space: O(n)
 
 
-```
+```python
 if len(nums) == 1:
     return nums[0]
 if 0 in nums:
@@ -75,7 +78,7 @@ Time: $$O(n)$$
 
 Space: $$O(1)$$
 
-```
+```python
 ans = max(nums)
 prefix = 1
 for i in nums:
@@ -101,7 +104,7 @@ Time: $$O(n)$$
 
 Space: $$O(n)$$
 
-```
+```python
 A, B = nums, nums[::-1]
 for i in range(1, len(A)):
     A[i] *= A[i - 1] or 1
