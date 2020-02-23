@@ -29,23 +29,25 @@ There are multiple ways to validate a binary tree. Here is one way of doing that
 - Every other node must have in-degree equal to one.
 
 Time: $$O(n)$$
+
 Space: $$O(n)$$
 
 ## 1362. Closest Divisors
 [[Problem](https://leetcode.com/problems/closest-divisors/)]
 [[Code](https://github.com/lydxlx1/LeetCode/blob/master/src/closest-divisors.py)]
 
-There can be at most $$\sqrt(n)$$ pairs of divisors, so we can just enumerate all of them.
+There can be at most $$\sqrt{n}$$ pairs of divisors, so we can just enumerate all of them.
 
-Time: $$O(\sqrt(n))$$
-Space: $$O(\sqrt(n))$$, which can be further optimized to $O(1)$.
+Time: $$O(\sqrt{n})$$
+
+Space: $$O(\sqrt{n})$$, which can be further optimized to $O(1)$.
 
 ## 1363. Largest Multiple of Three
 [[Problem](https://leetcode.com/problems/largest-multiple-of-three/)]
 [[Code](https://github.com/lydxlx1/LeetCode/blob/master/src/largest-multiple-of-three.py)]
 
 This is a math problem. We first have two facts that are easy to verify.
-1. Since $$10^x \mod 3 = 1 (x \ge 0)$$, a number is a multiple of three if and only if the sum of digits is a multiple of three.
+1. Since $$10^x \mod 3 = 1, (x \ge 0)$$, a number is a multiple of three if and only if the sum of digits is a multiple of three.
 2. When the set of digits is given, to gain the max value, we should concatenate them in decreasing order.
    And if the largest digit is zero (no matter how many zeros are there), the answer is also zero.
    If the set of digit is empty, we output empty string.
@@ -59,5 +61,6 @@ Sum up all the digits and we have three cases based on its modulo (by 3).
 3. mod = 2. We should either discard a digit (that is 2 mod 2) or discard two digits (that are both 1 mod 3).
     Again, prefer to discard fewer digits.
 
-Time: $O(n log n)$, which can be optimized to $O(n)$ using counting sort.
+Time: $O(n \log n)$, which can be optimized to $O(n)$ using counting sort.
+
 Space: $O(n)$
