@@ -28,8 +28,7 @@ There are multiple ways to validate a binary tree. Here is one way of doing that
 - There must be exactly one node with 0 in-degree, and that node is the root.
 - Every other node must have in-degree equal to one.
 
-Time: $$O(n)$$
-
+Time: $$O(n)$$  
 Space: $$O(n)$$
 
 ## 1362. Closest Divisors
