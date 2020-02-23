@@ -26,7 +26,7 @@ Most programming languages should have date related packages. Worth getting fami
 There are multiple ways to validate a binary tree. Here is one way of doing that.
 - There must be exactly $n - 1$ edges.
 - There must be exactly one node with 0 in-degree, and that node is the root.
-- Every other node must have in-degree equal to one.
+- Every other node must have in-degree equal to one.  
 
 Time: $$O(n)$$  
 Space: $$O(n)$$
@@ -37,8 +37,7 @@ Space: $$O(n)$$
 
 There can be at most $$\sqrt{n}$$ pairs of divisors, so we can just enumerate all of them.
 
-Time: $$O(\sqrt{n})$$
-
+Time: $$O(\sqrt{n})$$  
 Space: $$O(\sqrt{n})$$, which can be further optimized to $O(1)$.
 
 ## 1363. Largest Multiple of Three
@@ -58,8 +57,7 @@ Sum up all the digits and we have three cases based on its modulo (by 3).
 2. mod = 1. We should either discard a digit (that is 1 mod 3) or discard two digits (that are both 2 mod 3).
    Prefer to discard fewer digits.
 3. mod = 2. We should either discard a digit (that is 2 mod 2) or discard two digits (that are both 1 mod 3).
-    Again, prefer to discard fewer digits.
+    Again, prefer to discard fewer digits.  
 
-Time: $O(n \log n)$, which can be optimized to $O(n)$ using counting sort.
-
+Time: $O(n \log n)$, which can be optimized to $O(n)$ using counting sort.  
 Space: $O(n)$
