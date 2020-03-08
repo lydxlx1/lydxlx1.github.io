@@ -31,7 +31,7 @@ Space: $$O(100)$$
 
 Assume there are m rounds of voting, we can solve this problem by a radix sort (from the m-th round to the first round).
 
-Time: $$O(m * (26 log 26))$$, which can be further optimized to $$O(26m)$$ using counting sort.  
+Time: $$O(m * (26 \log 26))$$, which can be further optimized to $$O(26m)$$ using counting sort.  
 Space: $$O(26)$$  
 
 ## 1367. Linked List in Binary Tree
@@ -58,7 +58,7 @@ Build the graph
   This means each cell will have exactly one outgoing edge with 0 weight, and two or three outgoing edges with weight equal to 1.o
 - Then, the length of the shortest path from top-left to bottom-right will be the answer.
 
-Time: $$O(mn log (mn))$$, which can be further optimized to $$O(mn)$$.
+Time: $$O(mn \log (mn))$$, which can be further optimized to $$O(mn)$$.
       This is because weights of edges in this graph are either 0 or 1, so we can compute the shortest path using BFS with a Deque.
       Formally, we insert to the head of the queue if the edge weight is 0 and insert to the tail of the queue if weight is 1.  
 Space: $$O(mn)$$
