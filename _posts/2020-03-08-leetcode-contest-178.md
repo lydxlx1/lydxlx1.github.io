@@ -55,7 +55,7 @@ This is a single source shortest path problem.
 Build the graph
 - For each grid cell, create four directed edges to its neighbors (if exist).
 - The weight of the edge is 0 if the edge direction matches with the number in cell, otherwise the weight is 1.
-  This means each cell will have exactly one outgoing edge with 0 weight, and two or three outgoing edges with weight equal to 1.o
+  This means each cell will have exactly one outgoing edge with 0 weight, and two or three outgoing edges with weight equal to 1.
 - Then, the length of the shortest path from top-left to bottom-right will be the answer.
 
 Time: $$O(mn \log (mn))$$, which can be further optimized to $$O(mn)$$.
