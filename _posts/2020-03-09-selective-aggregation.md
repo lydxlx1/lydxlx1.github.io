@@ -18,7 +18,8 @@ where the latter counts after a selective filter.
 However, when it comes to other aggregation functions, there are simply no the corresponding `_IF` versions.
 One could argue that we could put the filter in `WHERE`,
 but this will not scale if we want to do multiple selective aggregations.
-Consider the following examples.
+
+Consider the following example.
 It would be really convenient to have these `_IF` aggregation variants,
 and otherwise one has to do each selective aggregation separately and finally join them together.
 
