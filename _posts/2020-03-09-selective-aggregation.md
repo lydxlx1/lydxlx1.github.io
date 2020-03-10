@@ -53,7 +53,7 @@ GROUP BY
 ```
 
 ## Fun Fact
-I only surfaced this cool feature from [this request](https://github.com/prestodb/presto/issues/5085) on Presto's Github page.
+I surfaced this cool feature from [this request](https://github.com/prestodb/presto/issues/5085) on Presto's Github page.
 
 As stated by the last comment,
 > Is this feature documented anywhere? I only found it because https://stackoverflow.com/questions/55504820/presto-filter-array-of-rows-inside-aggregation
