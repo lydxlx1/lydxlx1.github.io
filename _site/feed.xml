@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>lydxlx</title>
+    <description></description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 22 Apr 2020 14:31:56 -0700</pubDate>
+    <lastBuildDate>Wed, 22 Apr 2020 14:31:56 -0700</lastBuildDate>
+    <generator>Jekyll v4.0.0</generator>
+    
+      <item>
+        <title>Equation of the circle passing through three points</title>
+        <description>
+It is well known that any three non-collinear points (A, B, C) determine a unique circle passing through them. Mathematically, we can find the circle center by computing the intersection point of the perpendicular bisectors of segments AB and AC. (Pairs AB and BC or pairs AC and BC would also work.) In code implementation, however, this method can be error-prone and require extra handling when the segment slope is nearly vertical.
+
+By searching the Internet carefully, I was finally able to find an algorithm that doesn’t deal with any slope computation, which is perfect for competitive programming. Please refer to &lt;a href=&quot;http://www.ambrsoft.com/trigocalc/circle3d.htm&quot;&gt;this link&lt;/a&gt; for the original post. In case the website goes down in the future, I cited its content in below. The copyright all belongs to ambrsoft.
+
+&lt;hr /&gt;
+
+The equation of an arbitrary circle can be described by the following equation:
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;Ax^2 + Ay^2 + Bx + Cy + D = 0&lt;/script&gt;
+
+After substituting the three given points, &lt;script type=&quot;math/tex&quot;&gt;(x_1, y_1), (x_2, y_2)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;(x_3, y_3)&lt;/script&gt;, which lie on the circle we get the set of equations that can be described by the determinant:
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{vmatrix}
+x^2 + y^2 &amp; x &amp; y &amp; 1 \\
+{x_1}^2 + {y_1}^2 &amp; {x_1} &amp; {y_1} &amp; 1 \\
+{x_2}^2 + {y_2}^2 &amp; {x_2} &amp; {y_2} &amp; 1 \\
+{x_3}^2 + {y_3}^2 &amp; {x_3} &amp; {y_3} &amp; 1 \\
+\end{vmatrix} = 0 %]]&gt;&lt;/script&gt;
+
+The coefficients &lt;script type=&quot;math/tex&quot;&gt;A, B, C&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;D&lt;/script&gt; can be found by solving the following determinants:
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+A = \begin{vmatrix}
+{x_1} &amp; {y_1} &amp; 1\\
+{x_2} &amp; {y_2} &amp; 1\\
+{x_3} &amp; {y_3} &amp; 1\\
+\end{vmatrix},
+B = -\begin{vmatrix}
+{x_1}^2+{y_1}^2 &amp; {y_1} &amp; 1\\
+{x_2}^2+{y_2}^2 &amp; {y_2} &amp; 1\\
+{x_3}^2+{y_3}^2 &amp; {y_3} &amp; 1\\
+\end{vmatrix},
+C = \begin{vmatrix}
+{x_1}^2+{y_1}^2 &amp; {x_1} &amp; 1\\
+{x_2}^2+{y_2}^2 &amp; {x_2} &amp; 1\\
+{x_3}^2+{y_3}^2 &amp; {x_3} &amp; 1\\
+\end{vmatrix},
+D = -\begin{vmatrix}
+{x_1}^2+{y_1}^2 &amp; {x_1} &amp; {y_1}\\
+{x_2}^2+{y_2}^2 &amp; {x_2} &amp; {y_2}\\
+{x_3}^2+{y_3}^2 &amp; {x_3} &amp; {y_3}\\
+\end{vmatrix} %]]&gt;&lt;/script&gt;
+
+The values of &lt;script type=&quot;math/tex&quot;&gt;A, B, C&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;D&lt;/script&gt; will be after solving the determinants:
+&lt;script type=&quot;math/tex&quot;&gt;A = {x_1}({y_2}-{y_3}) - {y_1}({x_2}-{x_3}) + {x_2}{y_3} - {x_3}{y_2}\\
+B = ({x_1}^2+{y_1}^2)({y_3}-{y_2}) + ({x_2}^2+{y_2}^2)({y_1}-{y_3}) + ({x_3}^2+{y_3}^3)({y_2}-{y_1})\\
+C = ({x_1}^2+{y_1}^2)({x_2}-{x_3}) + ({x_2}^2+{y_2}^2)({x_3}-{x_1}) + ({x_3}^2+{y_3}^2)({x_1}-{x_2})\\
+D = ({x_1}^2+{y_1}^2)({x_3}{y_2}-{x_2}{y_3}) + ({x_2}^2+{y_2}^2)({x_1}{y_3}-{x_3}{y_1}) + ({x_3}^2+{y_3}^2)({x_2}{y_1} - {x_1}{y_2})&lt;/script&gt;
+
+&lt;hr /&gt;
+
+Center point &lt;script type=&quot;math/tex&quot;&gt;(x, y)&lt;/script&gt; and the radius &lt;script type=&quot;math/tex&quot;&gt;r&lt;/script&gt; of the circle passing through &lt;script type=&quot;math/tex&quot;&gt;({x_1}, {y_1}), ({x_2}, {y_2})&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;({x_3}, {y_3})&lt;/script&gt; are:
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x = -\frac{B}{2A} \\
+y = -\frac{C}{2A}\\
+r = \sqrt{\frac{B^2+C^2-4AD}{4A^2}}&lt;/script&gt;
+
+Here is the python code to find the circle center given three points (in format of pairs).
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y2&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;C&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Tue, 17 Mar 2020 00:00:00 -0700</pubDate>
+        <link>http://localhost:4000/blog/2020/03/17/circle-passing-3-pts/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2020/03/17/circle-passing-3-pts/</guid>
+        
+        <category>computational-geometry</category>
+        
+        <category>circle</category>
+        
+        <category>template</category>
+        
+        <category>algorithm</category>
+        
+        
+        <category>math</category>
+        
+        <category>geometry</category>
+        
+      </item>
+    
+      <item>
+        <title>LeetCode Weekly Contest 180</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#1380-lucky-numbers-in-a-matrix&quot; id=&quot;markdown-toc-1380-lucky-numbers-in-a-matrix&quot;&gt;1380. Lucky Numbers in a Matrix&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1381-design-a-stack-with-increment-operation&quot; id=&quot;markdown-toc-1381-design-a-stack-with-increment-operation&quot;&gt;1381. Design a Stack With Increment Operation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1382-balance-a-binary-search-tree&quot; id=&quot;markdown-toc-1382-balance-a-binary-search-tree&quot;&gt;1382. Balance a Binary Search Tree&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1383-maximum-performance-of-a-team&quot; id=&quot;markdown-toc-1383-maximum-performance-of-a-team&quot;&gt;1383. Maximum Performance of a Team&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;1380-lucky-numbers-in-a-matrix&quot;&gt;1380. Lucky Numbers in a Matrix&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/contest/weekly-contest-180/problems/lucky-numbers-in-a-matrix/&quot;&gt;Problem&lt;/a&gt;]
+[&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/lucky-numbers-in-a-matrix.py&quot;&gt;Code&lt;/a&gt;]
+
+Since all elements are distinct in the matrix, we can pre-compute the min value per each row and the max value per each column.
+Then, we scan the matrix one more time and find all the candidates.
+
+Time: O(mn)&lt;br /&gt;
+Space: O(m + n)
+
+&lt;h2 id=&quot;1381-design-a-stack-with-increment-operation&quot;&gt;1381. Design a Stack With Increment Operation&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/contest/weekly-contest-180/problems/design-a-stack-with-increment-operation/&quot;&gt;Problem&lt;/a&gt;]
+[&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/design-a-stack-with-increment-operation.py&quot;&gt;Code&lt;/a&gt;]
+
+Maintain each prefix increment pointwisely and lazily. 
+Then all operations can be implemented in O(1) time.
+
+&lt;h2 id=&quot;1382-balance-a-binary-search-tree&quot;&gt;1382. Balance a Binary Search Tree&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/contest/weekly-contest-180/problems/balance-a-binary-search-tree/&quot;&gt;Problem&lt;/a&gt;]
+[&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/balance-a-binary-search-tree.py&quot;&gt;Code&lt;/a&gt;]
+
+Do an in-order traversal to obtain all the elements in BST in sorted order.
+Then build the balanced tree using Divide-and-Conquer.
+
+Time: O(n)&lt;br /&gt;
+Space: O(n)
+
+&lt;h2 id=&quot;1383-maximum-performance-of-a-team&quot;&gt;1383. Maximum Performance of a Team&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/contest/weekly-contest-180/problems/maximum-performance-of-a-team/&quot;&gt;Problem&lt;/a&gt;]
+[&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/maximum-performance-of-a-team.py&quot;&gt;Code&lt;/a&gt;]
+
+Enumerate the engineer that has the minimum efficiency in the team.
+When each engineer is fixed, find those (at most) k engineers that have top speed.
+This algorithm can be implemented efficiently by (i) a pre-sorting on efficiency in decreasing order and (ii) using a heap or BST to maintain top-k speed.
+
+Time: O(n log n + n log k) = O(n log n)&lt;br /&gt;
+Space: O(k + sorting). When using (say) heap-sort, the complexity becomes O(k).
+</description>
+        <pubDate>Tue, 17 Mar 2020 00:00:00 -0700</pubDate>
+        <link>http://localhost:4000/blog/2020/03/17/leetcode-context-180/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2020/03/17/leetcode-context-180/</guid>
+        
+        <category>leetcode</category>
+        
+        
+        <category>coding</category>
+        
+      </item>
+    
+      <item>
+        <title>Selective Aggregation (in Presto)</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#solution---selective-aggregation&quot; id=&quot;markdown-toc-solution---selective-aggregation&quot;&gt;Solution - Selective Aggregation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#fun-fact&quot; id=&quot;markdown-toc-fun-fact&quot;&gt;Fun Fact&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+When counting in aggregation, you are probably familiar with both &lt;code class=&quot;highlighter-rouge&quot;&gt;COUNT()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;COUNT_IF()&lt;/code&gt;,
+where the latter counts after a selective filter.
+However, when it comes to other aggregation functions, there are simply no the corresponding &lt;code class=&quot;highlighter-rouge&quot;&gt;_IF&lt;/code&gt; versions.
+One could argue that we could put the filter in &lt;code class=&quot;highlighter-rouge&quot;&gt;WHERE&lt;/code&gt;,
+but this will not scale if we want to do multiple selective aggregations.
+
+Consider the following example.
+It would be really convenient to have these &lt;code class=&quot;highlighter-rouge&quot;&gt;_IF&lt;/code&gt; aggregation variants,
+and otherwise one has to do each selective aggregation separately and finally join them together.
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;SUM_IF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;val1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;condition1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AS&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sum1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;SUM_IF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;val1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;condition2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AS&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sum2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;ARRAY_AGG_IF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;val2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;condition3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AS&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;table&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;solution---selective-aggregation&quot;&gt;Solution - Selective Aggregation&lt;/h2&gt;
+We can now write the following query in Presto for selective aggregations.
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;AGG1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FILTER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;condition1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;AGG2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FILTER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;condition2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;AGG3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FILTER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;condition3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;table&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; 
+  &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;fun-fact&quot;&gt;Fun Fact&lt;/h2&gt;
+I surfaced this cool feature from &lt;a href=&quot;https://github.com/prestodb/presto/issues/5085&quot;&gt;this request&lt;/a&gt; on Presto’s Github page.
+
+As stated by the last comment,
+&lt;blockquote&gt;
+  Is this feature documented anywhere? I only found it because https://stackoverflow.com/questions/55504820/presto-filter-array-of-rows-inside-aggregation
+&lt;/blockquote&gt;
+
+As of now, I still cannot find any related document on Presto’s main page, and this feature has just been silently supported since Dec 20, 2016…
+</description>
+        <pubDate>Mon, 09 Mar 2020 00:00:00 -0700</pubDate>
+        <link>http://localhost:4000/blog/2020/03/09/selective-aggregation/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2020/03/09/selective-aggregation/</guid>
+        
+        <category>sql</category>
+        
+        <category>presto</category>
+        
+        
+        <category>sql</category>
+        
+      </item>
+    
+      <item>
+        <title>LeetCode Weekly Contest 178</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#1365-how-many-numbers-are-smaller-than-the-current-number&quot; id=&quot;markdown-toc-1365-how-many-numbers-are-smaller-than-the-current-number&quot;&gt;1365. How Many Numbers Are Smaller Than the Current Number&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1366-rank-teams-by-votes&quot; id=&quot;markdown-toc-1366-rank-teams-by-votes&quot;&gt;1366. Rank Teams by Votes&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1367-linked-list-in-binary-tree&quot; id=&quot;markdown-toc-1367-linked-list-in-binary-tree&quot;&gt;1367. Linked List in Binary Tree&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1368-minimum-cost-to-make-at-least-one-valid-path-in-a-grid&quot; id=&quot;markdown-toc-1368-minimum-cost-to-make-at-least-one-valid-path-in-a-grid&quot;&gt;1368. Minimum Cost to Make at Least One Valid Path in a Grid&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;1365-how-many-numbers-are-smaller-than-the-current-number&quot;&gt;1365. How Many Numbers Are Smaller Than the Current Number&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/&quot;&gt;Problem&lt;/a&gt;]
+[&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/how-many-numbers-are-smaller-than-the-current-number.py&quot;&gt;Code&lt;/a&gt;]
+
+Since each number is within the range [0, 100], we can use a counting sort based approach.
+&lt;ol&gt;
+  &lt;li&gt;Do a linear-time counting.&lt;/li&gt;
+  &lt;li&gt;Compute the prefix sum.&lt;/li&gt;
+  &lt;li&gt;Answer each query in O(1) time.&lt;/li&gt;
+&lt;/ol&gt;
+
+Time: &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;&lt;br /&gt;
+Space: &lt;script type=&quot;math/tex&quot;&gt;O(100)&lt;/script&gt;
+
+&lt;h2 id=&quot;1366-rank-teams-by-votes&quot;&gt;1366. Rank Teams by Votes&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/contest/weekly-contest-178/problems/rank-teams-by-votes/&quot;&gt;Problem&lt;/a&gt;]
+[&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/rank-teams-by-votes.py&quot;&gt;Code&lt;/a&gt;]
+
+Assume there are m rounds of voting, we can solve this problem by a radix sort (from the m-th round to the first round).
+
+Time: &lt;script type=&quot;math/tex&quot;&gt;O(m * (26 \log 26))&lt;/script&gt;, which can be further optimized to &lt;script type=&quot;math/tex&quot;&gt;O(26m)&lt;/script&gt; using counting sort.&lt;br /&gt;
+Space: &lt;script type=&quot;math/tex&quot;&gt;O(26)&lt;/script&gt;
+
+&lt;h2 id=&quot;1367-linked-list-in-binary-tree&quot;&gt;1367. Linked List in Binary Tree&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/problems/linked-list-in-binary-tree/&quot;&gt;Problem&lt;/a&gt;]
+[&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/linked-list-in-binary-tree.py&quot;&gt;Code&lt;/a&gt;]
+
+It is hard to solve the problem in a top-down fashion since each tree node can have two choices.
+However, since each node has a unique parent, the upwards paths ending at any node are also unique (by its length).
+This suggests a DFS approach, where we just need to check whether the last m nodes on the stack match the given listed list at any time.
+
+Time: &lt;script type=&quot;math/tex&quot;&gt;O(mn)&lt;/script&gt;&lt;br /&gt;
+Space: &lt;script type=&quot;math/tex&quot;&gt;O(m + h)&lt;/script&gt;&lt;br /&gt;
+m = linked list size, n = binary tree size, h = binary tree height
+
+&lt;h2 id=&quot;1368-minimum-cost-to-make-at-least-one-valid-path-in-a-grid&quot;&gt;1368. Minimum Cost to Make at Least One Valid Path in a Grid&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/&quot;&gt;Problem&lt;/a&gt;]
+[&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/minimum-cost-to-make-at-least-one-valid-path-in-a-grid.py&quot;&gt;Code&lt;/a&gt;]
+
+This is a single source shortest path problem.
+
+Build the graph
+&lt;ul&gt;
+  &lt;li&gt;For each grid cell, create four directed edges to its neighbors (if exist).&lt;/li&gt;
+  &lt;li&gt;The weight of the edge is 0 if the edge direction matches with the number in cell, otherwise the weight is 1.
+This means each cell will have exactly one outgoing edge with 0 weight, and two or three outgoing edges with weight equal to 1.&lt;/li&gt;
+  &lt;li&gt;Then, the length of the shortest path from top-left to bottom-right will be the answer.&lt;/li&gt;
+&lt;/ul&gt;
+
+Time: &lt;script type=&quot;math/tex&quot;&gt;O(mn \log (mn))&lt;/script&gt;, which can be further optimized to &lt;script type=&quot;math/tex&quot;&gt;O(mn)&lt;/script&gt;.
+      This is because weights of edges in this graph are either 0 or 1, so we can compute the shortest path using BFS with a Deque.
+      Formally, we insert to the head of the queue if the edge weight is 0 and insert to the tail of the queue if weight is 1.&lt;br /&gt;
+Space: &lt;script type=&quot;math/tex&quot;&gt;O(mn)&lt;/script&gt;
+</description>
+        <pubDate>Sun, 08 Mar 2020 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/blog/2020/03/08/leetcode-contest-178/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2020/03/08/leetcode-contest-178/</guid>
+        
+        <category>leetcode</category>
+        
+        
+        <category>coding</category>
+        
+      </item>
+    
+      <item>
+        <title>LeetCode Weekly Contest 177</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#1360-number-of-days-between-two-dates&quot; id=&quot;markdown-toc-1360-number-of-days-between-two-dates&quot;&gt;1360. Number of Days Between Two Dates&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1361-validate-binary-tree-nodes&quot; id=&quot;markdown-toc-1361-validate-binary-tree-nodes&quot;&gt;1361. Validate Binary Tree Nodes&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1362-closest-divisors&quot; id=&quot;markdown-toc-1362-closest-divisors&quot;&gt;1362. Closest Divisors&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1363-largest-multiple-of-three&quot; id=&quot;markdown-toc-1363-largest-multiple-of-three&quot;&gt;1363. Largest Multiple of Three&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;1360-number-of-days-between-two-dates&quot;&gt;1360. Number of Days Between Two Dates&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/problems/number-of-days-between-two-dates/&quot;&gt;Problem&lt;/a&gt;]
+[&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/number-of-days-between-two-dates.py&quot;&gt;Code&lt;/a&gt;]
+
+Most programming languages should have date related packages. Worth getting familiar with them.
+
+&lt;h2 id=&quot;1361-validate-binary-tree-nodes&quot;&gt;1361. Validate Binary Tree Nodes&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/problems/validate-binary-tree-nodes/&quot;&gt;Problem&lt;/a&gt;]
+[&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/validate-binary-tree-nodes.py&quot;&gt;Code&lt;/a&gt;]
+
+There are multiple ways to validate a binary tree. Here is one way of doing that.
+&lt;ul&gt;
+  &lt;li&gt;There must be exactly $n - 1$ edges.&lt;/li&gt;
+  &lt;li&gt;There must be exactly one node with 0 in-degree, and that node is the root.&lt;/li&gt;
+  &lt;li&gt;Every other node must have in-degree equal to one.&lt;/li&gt;
+&lt;/ul&gt;
+
+Time: &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;&lt;br /&gt;
+Space: &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;
+
+&lt;h2 id=&quot;1362-closest-divisors&quot;&gt;1362. Closest Divisors&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/problems/closest-divisors/&quot;&gt;Problem&lt;/a&gt;]
+[&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/closest-divisors.py&quot;&gt;Code&lt;/a&gt;]
+
+There can be at most &lt;script type=&quot;math/tex&quot;&gt;\sqrt{n}&lt;/script&gt; pairs of divisors, so we can just enumerate all of them.
+
+Time: &lt;script type=&quot;math/tex&quot;&gt;O(\sqrt{n})&lt;/script&gt;&lt;br /&gt;
+Space: &lt;script type=&quot;math/tex&quot;&gt;O(\sqrt{n})&lt;/script&gt;, which can be further optimized to $O(1)$.
+
+&lt;h2 id=&quot;1363-largest-multiple-of-three&quot;&gt;1363. Largest Multiple of Three&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/problems/largest-multiple-of-three/&quot;&gt;Problem&lt;/a&gt;]
+[&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/largest-multiple-of-three.py&quot;&gt;Code&lt;/a&gt;]
+
+This is a math problem. We first have two facts that are easy to verify.
+&lt;ol&gt;
+  &lt;li&gt;Since &lt;script type=&quot;math/tex&quot;&gt;10^x \mod 3 = 1, (x \ge 0)&lt;/script&gt;, a number is a multiple of three if and only if the sum of digits is a multiple of three.&lt;/li&gt;
+  &lt;li&gt;When the set of digits is given, to gain the max value, we should concatenate them in decreasing order.
+And if the largest digit is zero (no matter how many zeros are there), the answer is also zero.
+If the set of digit is empty, we output empty string.&lt;/li&gt;
+&lt;/ol&gt;
+
+Then, it is easier to solve this problem backwards, i.e.,
+considering the digits we have to discard to make the final number as large as possible.
+Sum up all the digits and we have three cases based on its modulo (by 3).
+&lt;ol&gt;
+  &lt;li&gt;mod = 0. This is a happy case, and we should just use up all the digits.&lt;/li&gt;
+  &lt;li&gt;mod = 1. We should either discard a digit (that is 1 mod 3) or discard two digits (that are both 2 mod 3).
+Prefer to discard fewer digits.&lt;/li&gt;
+  &lt;li&gt;mod = 2. We should either discard a digit (that is 2 mod 2) or discard two digits (that are both 1 mod 3).
+ Again, prefer to discard fewer digits.&lt;/li&gt;
+&lt;/ol&gt;
+
+Time: $O(n \log n)$, which can be optimized to $O(n)$ using counting sort.&lt;br /&gt;
+Space: $O(n)$
+</description>
+        <pubDate>Sun, 23 Feb 2020 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/blog/2020/02/23/leetcode-contest-177/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2020/02/23/leetcode-contest-177/</guid>
+        
+        <category>leetcode</category>
+        
+        
+        <category>coding</category>
+        
+      </item>
+    
+      <item>
+        <title>LeetCode Problem 152 - Maximum Product Subarray</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#leetcode-problem-152---maximum-product-subarray&quot; id=&quot;markdown-toc-leetcode-problem-152---maximum-product-subarray&quot;&gt;LeetCode Problem 152 - Maximum Product Subarray&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#first-attempt&quot; id=&quot;markdown-toc-first-attempt&quot;&gt;First attempt&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#second-attempt&quot; id=&quot;markdown-toc-second-attempt&quot;&gt;Second Attempt&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#third-attempt&quot; id=&quot;markdown-toc-third-attempt&quot;&gt;Third Attempt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;leetcode-problem-152---maximum-product-subarray&quot;&gt;LeetCode Problem 152 - Maximum Product Subarray&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/problems/maximum-product-subarray/&quot;&gt;Problem&lt;/a&gt;][&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/_152.py&quot;&gt;Github Code&lt;/a&gt;]
+
+&lt;h2 id=&quot;first-attempt&quot;&gt;First attempt&lt;/h2&gt;
+This solution is complicated but marks how I started to tackle this problem.
+&lt;ol&gt;
+  &lt;li&gt;If the array contains only one element, then that’s the answer.&lt;/li&gt;
+  &lt;li&gt;If the array contains zeros, then answer is at least zero. In addition, any subarray that contains a zero
+will result in a zero product. Therefore, we can split the array by zero and obtain a list of subarrays
+that do not contain any zeros. Then, we can recursively solve these subproblems and take their max products
+and max with the zero product mentioned previously.&lt;/li&gt;
+  &lt;li&gt;Now, it suffices to assume that all elements in nums are integers with absolute value greater than 0. We
+then have two cases.
+    &lt;ol&gt;
+      &lt;li&gt;If there are even number of negative integers, then it is clear that the total array product will be
+ positive and will be the largest one.&lt;/li&gt;
+      &lt;li&gt;If there are odd number of negative integers and let’s assume that the first and last negative integers
+ appear at index &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt;, where &lt;code class=&quot;highlighter-rouge&quot;&gt;0 &amp;lt;= a &amp;lt;= b &amp;lt; n&lt;/code&gt;, then the largest product must be either &lt;code class=&quot;highlighter-rouge&quot;&gt;(nums[a + 1] * nums[a + 2] * ... * nums[n - 1])&lt;/code&gt;
+ or &lt;code class=&quot;highlighter-rouge&quot;&gt;(nums[0] * nums[1] * ... * nums[b - 1])&lt;/code&gt;.
+ For convenience, instead of doing exactly what the above algorithm suggests, it suffices to comptue all the
+ prefix and suffix products and take the max. (This also covers 3.1.)&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+Time: &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;
+
+Space: &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cand&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	    &lt;span class=&quot;n&quot;&gt;cand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;maxProduct&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+	    &lt;span class=&quot;n&quot;&gt;cand&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;maxProduct&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;prefix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;prefix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;suffix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;reversed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;suffix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suffix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;second-attempt&quot;&gt;Second Attempt&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;Initialize ans to be max(nums), which covers case 1 and the zero case of case 2.&lt;/li&gt;
+  &lt;li&gt;Do a global prefix and suffix product but restart the accumulating when encountering any zeros.
+This will cover the remaining part of case 2 and case 3.&lt;/li&gt;
+&lt;/ol&gt;
+
+Time: &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;
+
+Space: &lt;script type=&quot;math/tex&quot;&gt;O(1)&lt;/script&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;prefix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;prefix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;prefix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;suffix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;reversed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;suffix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suffix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;suffix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;third-attempt&quot;&gt;Third Attempt&lt;/h2&gt;
+Further simplify the code… But it will use &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; extra space.
+
+Time: &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;
+
+Space: &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[::&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Wed, 19 Feb 2020 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/blog/2020/02/19/leetcode-problem-152/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2020/02/19/leetcode-problem-152/</guid>
+        
+        <category>leetcode</category>
+        
+        
+        <category>coding</category>
+        
+      </item>
+    
+      <item>
+        <title>LeetCode Weekly Contest 176</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#count-negative-numbers-in-a-sorted-matrix&quot; id=&quot;markdown-toc-count-negative-numbers-in-a-sorted-matrix&quot;&gt;Count Negative Numbers in a Sorted Matrix&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#product-of-the-last-k-numbers&quot; id=&quot;markdown-toc-product-of-the-last-k-numbers&quot;&gt;Product of the Last K Numbers&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#maximum-number-of-events-that-can-be-attended&quot; id=&quot;markdown-toc-maximum-number-of-events-that-can-be-attended&quot;&gt;Maximum Number of Events That Can Be Attended&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#construct-target-array-with-multiple-sums&quot; id=&quot;markdown-toc-construct-target-array-with-multiple-sums&quot;&gt;Construct Target Array With Multiple Sums&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;count-negative-numbers-in-a-sorted-matrix&quot;&gt;Count Negative Numbers in a Sorted Matrix&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/&quot;&gt;Problem&lt;/a&gt;]
+[&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/Count-Negative-Numbers-in-a-Sorted-Matrix.py&quot;&gt;Code&lt;/a&gt;]
+
+Essentially a Young Tableau problem. 
+Start from the right top right cell. At each step, we can either remove a row or a column.
+
+Time: &lt;script type=&quot;math/tex&quot;&gt;O(m + n)&lt;/script&gt;
+
+Extra space: &lt;script type=&quot;math/tex&quot;&gt;O(1)&lt;/script&gt;
+
+&lt;h2 id=&quot;product-of-the-last-k-numbers&quot;&gt;Product of the Last K Numbers&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/problems/product-of-the-last-k-numbers/&quot;&gt;Problem&lt;/a&gt;]
+[&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/Product-of-the-Last-K-Numbers.py&quot;&gt;Code&lt;/a&gt;]
+
+My solution is a bit uncommon…
+
+Pay attention to the following statement
+
+&lt;blockquote&gt;
+  At any time, the product of any contiguous sequence of numbers will fit into a single 32-bit integer without overflowing.
+&lt;/blockquote&gt;
+
+This means the following:
+&lt;ul&gt;
+  &lt;li&gt;The answer is 0 if there is at least a zero among the &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; numbers.&lt;/li&gt;
+  &lt;li&gt;If there’s no zero, the # of distinct numbers that are greater than 1 cannot be more than &lt;script type=&quot;math/tex&quot;&gt;\log_2(k)&lt;/script&gt;, which is less than 32.&lt;/li&gt;
+&lt;/ul&gt;
+
+Therefore, we can store the numbers in a compacted manner and then compute the product by brute-force.
+
+Time: &lt;script type=&quot;math/tex&quot;&gt;O(1)&lt;/script&gt; for add, &lt;script type=&quot;math/tex&quot;&gt;O(32)&lt;/script&gt; for product
+
+Space: &lt;script type=&quot;math/tex&quot;&gt;O(add)&lt;/script&gt;
+
+&lt;h2 id=&quot;maximum-number-of-events-that-can-be-attended&quot;&gt;Maximum Number of Events That Can Be Attended&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/&quot;&gt;Problem&lt;/a&gt;]
+[&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/maximum-number-of-events-that-can-be-attended.py&quot;&gt;Code&lt;/a&gt;]
+
+Sweep time stamp $t$ for 0 to &lt;script type=&quot;math/tex&quot;&gt;10^5&lt;/script&gt;, for each &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;, we would like to
+&lt;ol&gt;
+  &lt;li&gt;identify all the events whose interval contain &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;, and&lt;/li&gt;
+  &lt;li&gt;attend the event with earliest ending time if any.&lt;/li&gt;
+&lt;/ol&gt;
+
+Step 2 is the greedy step. For correctness:
+&lt;ul&gt;
+  &lt;li&gt;One needs to show that it cannot be worse to take an event at &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; if there’s any candidate.&lt;/li&gt;
+  &lt;li&gt;One also needs to prove that it cannot be worse to take the event with earliest end time among all the feasible candidates.&lt;/li&gt;
+&lt;/ul&gt;
+
+For implementation:
+&lt;ul&gt;
+  &lt;li&gt;Step 1 can be done efficiently via a global sorting on event’s start time.&lt;/li&gt;
+  &lt;li&gt;Step 2 can be maintained using a heap or balanced BST.&lt;/li&gt;
+&lt;/ul&gt;
+
+Time: &lt;script type=&quot;math/tex&quot;&gt;O(n \log n)&lt;/script&gt;
+
+Space: &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;
+
+&lt;h2 id=&quot;construct-target-array-with-multiple-sums&quot;&gt;Construct Target Array With Multiple Sums&lt;/h2&gt;
+[&lt;a href=&quot;https://leetcode.com/problems/construct-target-array-with-multiple-sums/&quot;&gt;Problem&lt;/a&gt;]
+[&lt;a href=&quot;https://github.com/lydxlx1/LeetCode/blob/master/src/construct-target-array-with-multiple-sums.py&quot;&gt;Code&lt;/a&gt;]
+
+Find the largest number in the array, then there’s a unique way to compute its value of the previous stage.
+Keep doing so until
+&lt;ul&gt;
+  &lt;li&gt;all numbers are equal to 1 –&amp;gt; True&lt;/li&gt;
+  &lt;li&gt;any number becomes negative –&amp;gt; False&lt;/li&gt;
+&lt;/ul&gt;
+
+Use a SortedList / a Max-Heap for quick indexing.
+
+Time: &lt;script type=&quot;math/tex&quot;&gt;O(n \log n \log C)&lt;/script&gt;, where $C$ is the largest element in the given list.
+
+Space: &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt;
+</description>
+        <pubDate>Sat, 15 Feb 2020 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/blog/2020/02/15/leetcode-176/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2020/02/15/leetcode-176/</guid>
+        
+        <category>leetcode</category>
+        
+        
+        <category>coding</category>
+        
+      </item>
+    
+      <item>
+        <title>Disable hardware acceleration in Chrome</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#背景&quot; id=&quot;markdown-toc-背景&quot;&gt;背景&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#解决方法&quot; id=&quot;markdown-toc-解决方法&quot;&gt;解决方法&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#一个小发现&quot; id=&quot;markdown-toc-一个小发现&quot;&gt;一个小发现&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;背景&quot;&gt;背景&lt;/h2&gt;
+自从更新了新的macOS到Catalina，我陆陆续续发现了一些问题。
+&lt;ul&gt;
+  &lt;li&gt;微信和其他窗口之间切换一直特别卡，会有1-2秒左右的延迟。&lt;/li&gt;
+  &lt;li&gt;Google Keep在chrome里切换tab也会特别卡，但是在其他浏览器（Firefox, Safari, …）中却没有这样的问题。&lt;/li&gt;
+&lt;/ul&gt;
+
+很长一段时间，我一直把锅丢给Chrome和mac的新操作系统…
+
+&lt;h2 id=&quot;解决方法&quot;&gt;解决方法&lt;/h2&gt;
+也许是歪打正着，我今天在网上闲逛有看看没有好的方案可以解决chrome狂吃cpu的问题。之后发现了一个帖子说禁用 &lt;strong&gt;Use hardware acceleration when available&lt;/strong&gt; 这个选项会有一定的效果。
+禁用了以后并没有发现明显的改善，但是微信以及Google Keep都可以瞬时切换了！非常神奇。。。
+
+建议遇到过类似问题的小伙伴也试试看，希望可以解决你们的问题！
+
+&lt;h2 id=&quot;一个小发现&quot;&gt;一个小发现&lt;/h2&gt;
+看来mac版本的微信内部是用Chrome来渲染的。
+</description>
+        <pubDate>Mon, 03 Feb 2020 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/blog/2020/02/03/disable-hardware-acceleration-in-chrome/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2020/02/03/disable-hardware-acceleration-in-chrome/</guid>
+        
+        <category>chrome</category>
+        
+        <category>wechat</category>
+        
+        
+        <category>tip</category>
+        
+      </item>
+    
+      <item>
+        <title>Goldilocks and the Three Bears</title>
+        <description>&lt;h2 id=&quot;goldilocks-and-the-three-bears&quot;&gt;Goldilocks and the Three Bears&lt;/h2&gt;
+
+…
+
+At that moment, Goldilocks woke up. When she saw the three bears, she leaped out of the bed, ran down the stairs, through the door, into the woods, and all the way home! And she never visited the house of the three bears ever again.
+</description>
+        <pubDate>Fri, 10 Jan 2020 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/blog/2020/01/10/goldilocks-and-the-three-bears/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2020/01/10/goldilocks-and-the-three-bears/</guid>
+        
+        <category>english</category>
+        
+        
+        <category>english</category>
+        
+      </item>
+    
+      <item>
+        <title>Mad Man</title>
+        <description>&lt;h2 id=&quot;mad-man&quot;&gt;Mad Man&lt;/h2&gt;
+By Lionsgate
+
+And let’s also say that change is neither good nor bad - it simply is. It can be greeted with terror or joy; a tantrum that says “I want it the way it was,” or a dance that says “Look, something new.”
+</description>
+        <pubDate>Sat, 04 Jan 2020 00:00:00 -0800</pubDate>
+        <link>http://localhost:4000/blog/2020/01/04/mad-man/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2020/01/04/mad-man/</guid>
+        
+        <category>typeracer</category>
+        
+        <category>english</category>
+        
+        
+        <category>english</category>
+        
+      </item>
+    
+  </channel>
+</rss>
