@@ -1,6 +1,6 @@
 ---
 author: lydxlx
-date: 2020-03-17
+date: 2020-04-22
 layout: post
 title: "Equation of the circle passing through three points"
 description: ""
