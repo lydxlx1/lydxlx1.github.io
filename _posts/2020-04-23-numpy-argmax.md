@@ -1,6 +1,6 @@
 ---
 author: lydxlx
-date: 2020-04-22t
+date: 2020-04-23
 layout: post
 title: "Numpy argmax does not populate from generator objects correctly"
 description: ""
