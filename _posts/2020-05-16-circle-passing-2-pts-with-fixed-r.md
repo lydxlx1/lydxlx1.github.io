@@ -1,6 +1,6 @@
 ---
 author: lydxlx
-date: 2020-05-07
+date: 2020-05-16
 layout: post
 title: "Center of the circle passing through two points with fixed radius"
 description: ""
