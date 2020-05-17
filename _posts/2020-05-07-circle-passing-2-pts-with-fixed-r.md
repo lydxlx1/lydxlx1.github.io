@@ -49,5 +49,5 @@ def centers(x1, y1, x2, y2, r):
 
     xx = (r ** 2 - (q / 2) ** 2) ** 0.5 * (y1 - y2) / q
     yy = (r ** 2 - (q / 2) ** 2) ** 0.5 * (x2 - x1) / q
-    return ((x3 + xx, y3 + yy), (x2 - xx, y3 - yy))
+    return ((x3 + xx, y3 + yy), (x3 - xx, y3 - yy))
 ```
