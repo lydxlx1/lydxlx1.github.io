@@ -13,7 +13,7 @@ tags: typeracer wpm css
 * content
 {:toc}
 
-[Typeracer](https://play.typeracer.com/) is one of my favorite typing website, and I have used the "Practice Yourself" feature a lot to improve my typing accuracy and speed (and also for fun!).
+[Typeracer](https://play.typeracer.com/) is one of my favorite typing websites, and I have used the "Practice Yourself" feature a lot to improve my typing accuracy and speed (and also for fun!).
 
 Recently, I have been thinking whether it's possible to **hide the WPM (words per minute) box** while typing so that I will get less distracted by the real-time WPM number and thus can focus more on the typing paragraph.
 
