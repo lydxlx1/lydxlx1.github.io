@@ -13,7 +13,7 @@ tags: tgz google takeout
 * content
 {:toc}
 
-Source: [](https://gist.github.com/chabala/22ed01d7acf9ee0de9e3d867133f83fb)
+Source: [https://gist.github.com/chabala/22ed01d7acf9ee0de9e3d867133f83fb](https://gist.github.com/chabala/22ed01d7acf9ee0de9e3d867133f83fb)
 
 One solution that works for me on Mac:
 ```bash
