@@ -14,7 +14,7 @@ tags: chatgpt
 {:toc}
 
 I asked ChatGPT to prepare me an email draft for requesting a replacement of my damaged green garbage bin.
-It worked very well -- I just needed to copy and paste the email to the city service, and I got the reply from the city on the next business and a new bin on the garbage collection day!
+It worked very well -- I just needed to copy and paste the email to the city service, and I got the reply from the city on the next business day and received a new bin on the garbage collection day!
 
 
 ## ChatGPT drafted email
