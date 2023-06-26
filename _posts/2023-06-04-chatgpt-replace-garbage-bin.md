@@ -2,7 +2,7 @@
 author: lydxlx
 date: 2023-06-04
 layout: post
-title: "ChatGPT helps write an email for gabbage bin replacement"
+title: "ChatGPT helps write an email for garbage bin replacement"
 description: ""
 mathjax: true
 tipue_search_active: true
